@@ -27,10 +27,8 @@ export default function ProductPage() {
     }
 
     return (
-        <HStack>
-
+        <HStack w="100%" h="100%" justify="center" align="center">
             <ProductDetail product={productData} />
-
         </HStack>
     )
 }

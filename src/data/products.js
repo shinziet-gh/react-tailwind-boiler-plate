@@ -1,4 +1,5 @@
 import heroImg from '../assets/hero.png'
+import blue from '../assets/blue.jpg'
 
 export const products = [
     {
@@ -6,7 +7,7 @@ export const products = [
         name: "Laptop",
         image: heroImg,
         description: "A high-performance laptop for all your computing needs.",
-        price: 800,
+        price: 800.00,
         weights: [2.5, 3.0, 3.5],
         category: "Electronics"
     },
@@ -15,7 +16,7 @@ export const products = [
         name: "Phone",
         image: heroImg,
         description: "A sleek and powerful smartphone with the latest features.",
-        price: 600,
+        price: 600.00,
         weights: [0.5, 0.6, 0.7],
         category: "Electronics"
     },
@@ -24,7 +25,7 @@ export const products = [
         name: "Chair",
         image: heroImg,
         description: "A comfortable chair for your home or office.",
-        price: 150,
+        price: 150.00,
         weights: [5.0, 5.5, 6.0],
         category: "Furniture"
     },
@@ -33,7 +34,7 @@ export const products = [
         name: "Window",
         image: heroImg,
         description: "A durable window for your home or office.",
-        price: 200,
+        price: 200.00,
         weights: [10.0, 12.0, 14.0],
         category: "Home Improvement"
     },
@@ -42,7 +43,7 @@ export const products = [
         name: "Glass",
         image: heroImg,
         description: "A sturdy glass for your kitchen or dining room.",
-        price: 50,
+        price: 50.00,
         weights: [0.2, 0.3, 0.4],
         category: "Kitchenware"
     },
@@ -51,9 +52,8 @@ export const products = [
         name: "Bag",
         image: heroImg,
         description: "A stylish bag for your everyday needs.",
-        price: 100,
+        price: 100.50,
         weights: [1.0, 1.5, 2.0],
         category: "Accessories"
     }
-
 ]
