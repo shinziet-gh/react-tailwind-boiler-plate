@@ -1,6 +1,8 @@
-import { Box, HStack, Text } from '@chakra-ui/react'
-import Navbar from './NavBar.tsx'
+import { Box, HStack, Text, IconButton } from '@chakra-ui/react'
+import { Link as RouterLink } from 'react-router'
+import { FiShoppingBag } from 'react-icons/fi'
 import { useState } from 'react'
+import NavBar from './NavBar';
 
 export default function Header() {
     //Get window dimensions
@@ -8,9 +10,18 @@ export default function Header() {
 
     return (
         <Box width="100%">
-            <HStack fontSize="md" gap="32" backgroundColor='white' marginY="5">
+            <HStack display="flex" fontSize="md" gap="32" marginY="5">
                 <Text fontWeight="bold"> MyShop</Text>
-                <Navbar isMenuOpen={isMenuOpen} />
+                <Box flex="1">
+                    <NavBar /></Box>
+                <Box flex="1"></Box>
+                <Box display="flex" justifyContent="flex-end">
+                    <IconButton aria-label="Cart" padding="2">
+                        <FiShoppingBag />
+                        <Text fontWeight="bold">(0)</Text>
+                    </IconButton>
+                </Box>
+
             </HStack>
         </Box>
     )

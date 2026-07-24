@@ -3,7 +3,7 @@ import { Outlet } from 'react-router'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
-function App() {
+function Layout() {
     return (
         <VStack w="100%" minH="100vh" align="center">
             <VStack w="80%" flex="1">
@@ -14,7 +14,7 @@ function App() {
                 </Box>
             </VStack>
 
-            <HStack width="100vw" bg="yellow" justifyContent="center">
+            <HStack id="contact" width="100vw" bg="yellow" justifyContent="center">
                 <Footer />
             </HStack>
 
@@ -22,4 +22,4 @@ function App() {
     )
 }
 
-export default App
+export default Layout

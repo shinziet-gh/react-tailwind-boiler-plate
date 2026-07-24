@@ -11,9 +11,8 @@ function Home() {
 
     <>
       <Banner />
-
-      <Box marginY="12" textAlign="center">
-        <Text fontSize="lg" fontWeight="medium" marginBottom="5" letterSpacing="wide">PRODUCTS</Text>
+      <Box marginY="12">
+        <Text fontWeight="bold" marginBottom="5">Products</Text>
         <ProductsGrid />
       </Box>
     </>

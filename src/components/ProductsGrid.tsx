@@ -5,7 +5,7 @@ import { products } from '../data/products.js'
 export default function ProductsGrid() {
 
     return (
-        <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+        <Grid id="products" templateColumns="repeat(3, 1fr)" gap={6} textAlign="center">
             {products.map((product) => (
                 <RouterLink key={product.id} to={`/product/${product.id}`}>
                     <VStack cursor="pointer" _hover={{ opacity: 0.8 }}>
