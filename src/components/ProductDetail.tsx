@@ -2,11 +2,18 @@ import { useState } from 'react'
 import { Button, HStack, Image, Text, VStack, Box } from '@chakra-ui/react'
 import { ProductType } from '../schema/product.ts'
 import Counter from './Counter.tsx'
+import useStateWithSessionStorage from '../hooks/useStateWithSessionStorage.ts'
 
 export default function ProductDetail({ product }: { product: ProductType }) {
 
     const [selectedWeight, setSelectedWeight] = useState(product.prodWeights[0])
-    const [quantity, setQuantity] = useState(1)
+
+    // New hook for getting and updating state from session storage
+    const [quantity, setQuantity] = useStateWithSessionStorage('cartQuantity')
+
+    const updateCart = () => {
+        setQuantity(quantity + 1);
+    }
 
     return (
         <HStack width="100%" display="flex" alignItems="flex-start">
@@ -38,7 +45,7 @@ export default function ProductDetail({ product }: { product: ProductType }) {
 
                         <HStack display="flex" justifyContent="space-between">
                             <Counter />
-                            <Button>Add to Cart</Button>
+                            <Button onClick={() => updateCart()}>Add to Cart</Button>
                         </HStack>
                     </Box>
                 </VStack>
