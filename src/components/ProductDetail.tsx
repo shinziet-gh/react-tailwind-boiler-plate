@@ -13,6 +13,10 @@ export default function ProductDetail({ product }: { product: ProductType }) {
 
     const updateCart = () => {
         setQuantity(quantity + 1);
+
+
+        console.log(`Added ${quantity} of ${product.prodName} (${selectedWeight}kg) to cart.`)
+
     }
 
     return (

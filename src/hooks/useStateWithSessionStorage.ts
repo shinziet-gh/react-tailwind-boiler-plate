@@ -9,6 +9,7 @@ export default function useStateWithSessionStorage(
 
     useEffect(() => {
         sessionStorage.setItem(storageKey, cartQuantity.toString());
+        window.dispatchEvent(new Event("cartQuantityUpdated")); // Notify other tabs about the change
     }, [cartQuantity, storageKey]);
 
     return [cartQuantity, setCartQuantity];

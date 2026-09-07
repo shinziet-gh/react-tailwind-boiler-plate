@@ -1,7 +1,7 @@
 import { Box, HStack, Text, IconButton } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router'
 import { FiShoppingBag } from 'react-icons/fi'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import NavBar from './NavBar';
 import useStateWithSessionStorage from '../hooks/useStateWithSessionStorage';
 
@@ -10,6 +10,17 @@ export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
     const [quantity, setQuantity] = useStateWithSessionStorage('cartQuantity')
+
+    const handleUpdate = () => {
+        setQuantity(Number.parseInt(sessionStorage.getItem('cartQuantity') ?? "0"));
+    }
+
+    useEffect(() => {
+        window.addEventListener("cartQuantityUpdated", handleUpdate);
+        return () => {
+            window.removeEventListener("cartQuantityUpdated", handleUpdate);
+        };
+    }, []);
 
     return (
         <Box width="100%">
@@ -21,7 +32,7 @@ export default function Header() {
                 <Box display="flex" justifyContent="flex-end">
                     <IconButton aria-label="Cart" padding="2">
                         <FiShoppingBag />
-                        <Text fontWeight="bold">({quantity})</Text>
+                        <Text fontWeight="bold">{quantity}</Text>
                     </IconButton>
                 </Box>
 
