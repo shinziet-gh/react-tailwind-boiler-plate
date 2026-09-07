@@ -1,22 +1,39 @@
 import { useState } from 'react'
 import { Button, HStack, Image, Text, VStack, Box } from '@chakra-ui/react'
 import { ProductType } from '../schema/product.ts'
+import { CartType } from '../schema/product.ts'
 import Counter from './Counter.tsx'
 import useStateWithSessionStorage from '../hooks/useStateWithSessionStorage.ts'
 
 export default function ProductDetail({ product }: { product: ProductType }) {
 
-    const [selectedWeight, setSelectedWeight] = useState(product.prodWeights[0])
+    const [selectedWeight, setSelectedWeight] = useState(product.prodWeights[0]);
+    const [selectedQuantity, setSelectedQuantity] = useState(1);
 
     // New hook for getting and updating state from session storage
-    const [quantity, setQuantity] = useStateWithSessionStorage('cartQuantity')
+    const [cart, setCart] = useStateWithSessionStorage('cart');
 
     const updateCart = () => {
-        setQuantity(quantity + 1);
 
+        const quantity = cart.cartQuantity;
 
-        console.log(`Added ${quantity} of ${product.prodName} (${selectedWeight}kg) to cart.`)
+        const newCart: CartType = {
+            cartQuantity: quantity + 1,
+            cartList: [
+                ...cart.cartList,
+                {
+                    prodId: product.prodId,
+                    prodName: product.prodName,
+                    prodPrice: product.prodPrice,
+                    prodWeight: selectedWeight,
+                    quantity: selectedQuantity
+                }
+            ]
+        };
 
+        setCart(newCart);
+
+        console.log(cart);
     }
 
     return (
@@ -41,14 +58,24 @@ export default function ProductDetail({ product }: { product: ProductType }) {
                     <Box display="flex" flexDirection="column" gap="4">
                         <HStack>
                             {product.prodWeights.map((weight, index) => (
-                                <Button width="90px" height="70px" key={index} backgroundColor="white" color="black" border="1px solid #ccc">
+                                <Button
+                                    width="90px"
+                                    height="70px"
+                                    key={index}
+                                    backgroundColor={(weight == selectedWeight) ? "#e0e0e0" : "white"}
+                                    color="black"
+                                    border={(weight == selectedWeight) ? "1px solid black" : "1px solid #ccc"}
+                                    onClick={() => setSelectedWeight(weight)}
+                                    _hover={{ backgroundColor: (weight == selectedWeight) ? "#e0e0e0" : "#f0f0f0" }}
+                                    _active={{ backgroundColor: "#e0e0e0" }}
+                                >
                                     {weight < 1 ? (weight * 1000).toString() + "g" : weight.toString() + "kg"}
                                 </Button>
                             ))}
                         </HStack>
 
                         <HStack display="flex" justifyContent="space-between">
-                            <Counter />
+                            <Counter count={selectedQuantity} updateCount={setSelectedQuantity} />
                             <Button onClick={() => updateCart()}>Add to Cart</Button>
                         </HStack>
                     </Box>

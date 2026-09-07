@@ -1,16 +1,23 @@
 import { useState } from 'react'
 import { HStack, Text, Button } from '@chakra-ui/react'
 
-export default function Counter() {
-    const [count, setCount] = useState(1)
+export default function Counter({ count, updateCount }: Readonly<{ count: number; updateCount: (count: number) => void }>) {
+    const [quantity, setQuantity] = useState<number>(count ?? 1);
+
+    const handleUpdateCount = (newCount: number) => {
+        if (newCount >= 0) {
+            setQuantity(newCount);
+            updateCount(newCount);
+        }
+    };
 
     return (
         <HStack>
-            <Button onClick={() => { if (count > 0) setCount(count - 1) }}>
+            <Button onClick={() => handleUpdateCount(quantity - 1)}>
                 -
             </Button>
-            <Text> {count} </Text>
-            <Button onClick={() => setCount(count + 1)}>
+            <Text> {quantity} </Text>
+            <Button onClick={() => handleUpdateCount(quantity + 1)}>
                 +
             </Button>
         </HStack>

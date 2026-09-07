@@ -9,10 +9,10 @@ export default function Header() {
     //Get window dimensions
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
-    const [quantity, setQuantity] = useStateWithSessionStorage('cartQuantity')
+    const [quantity, setQuantity] = useState<number>(useStateWithSessionStorage('cart')[0].cartQuantity ?? 0);
 
     const handleUpdate = () => {
-        setQuantity(Number.parseInt(sessionStorage.getItem('cartQuantity') ?? "0"));
+        setQuantity(useStateWithSessionStorage('cart')[0].cartQuantity ?? 0);
     }
 
     useEffect(() => {
