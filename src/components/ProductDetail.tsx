@@ -10,15 +10,29 @@ export default function ProductDetail({ product }: { product: ProductType }) {
     const [selectedWeight, setSelectedWeight] = useState(product.prodWeights[0]);
     const [selectedQuantity, setSelectedQuantity] = useState(1);
 
-    // New hook for getting and updating state from session storage
-    const [cart, setCart] = useStateWithSessionStorage('cart');
+    const [cart, setCart, _] = useStateWithSessionStorage('cart');
 
+    // Updating state from session storage
     const updateCart = () => {
 
-        const quantity = cart.cartQuantity;
+        // Check if the product already exists in the cart using set
+        const itemIndex = cart.cartList.findIndex((item) => item.prodId === product.prodId && item.prodWeight === selectedWeight);
+
+        if (itemIndex !== -1) {
+            cart.cartList[itemIndex].quantity += selectedQuantity;
+
+            const newCart: CartType = {
+                cartList: [...cart.cartList]
+            };
+
+            setCart(newCart);
+            console.log(cart);
+            return;
+        }
+
+        // If the product doesn't exist, add it to the cart 
 
         const newCart: CartType = {
-            cartQuantity: quantity + 1,
             cartList: [
                 ...cart.cartList,
                 {
@@ -26,13 +40,13 @@ export default function ProductDetail({ product }: { product: ProductType }) {
                     prodName: product.prodName,
                     prodPrice: product.prodPrice,
                     prodWeight: selectedWeight,
-                    quantity: selectedQuantity
+                    quantity: selectedQuantity,
+                    prodImageUrl: product.prodImageUrl
                 }
             ]
         };
 
         setCart(newCart);
-
         console.log(cart);
     }
 
