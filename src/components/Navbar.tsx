@@ -10,13 +10,13 @@ export default function NavBar() {
                 <Text _hover={{ fontWeight: "semibold" }}>Home</Text>
             </RouterLink>
 
-            <a href="#products">
+            <RouterLink to={`/#products`}>
                 <Text _hover={{ fontWeight: "semibold" }}>Products</Text>
-            </a>
+            </RouterLink>
 
-            <a href="#contact">
+            <RouterLink to={`/#contact`}>
                 <Text _hover={{ fontWeight: "semibold" }}>Contact</Text>
-            </a>
+            </RouterLink>
         </HStack>
     )
 }
