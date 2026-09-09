@@ -17,7 +17,6 @@ function Layout() {
             <HStack id="contact" width="100vw" bg="yellow" justifyContent="center">
                 <Footer />
             </HStack>
-
         </VStack>
     )
 }
