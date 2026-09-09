@@ -13,10 +13,11 @@ export type CartItemType = {
     prodName: string,
     prodPrice: number,
     prodWeight: number,
-    quantity: number
+    quantity: number,
+    prodImageUrl: string,
+
 }
 
 export type CartType = {
-    cartQuantity: number,
     cartList: CartItemType[],
 }
