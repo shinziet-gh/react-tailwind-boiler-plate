@@ -9,7 +9,7 @@ import CheckoutPage from './pages/CheckoutPage.tsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ChakraProvider value={{ ...defaultSystem, initialColorMode: 'dark' }}>
+    <ChakraProvider>
       <BrowserRouter basename="/react-tailwind-boiler-plate">
         <Routes>
           <Route path="/" element={<Layout />}>
