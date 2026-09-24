@@ -4,16 +4,28 @@ import { FiShoppingBag } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import NavBar from "./Navbar";
 import useStateWithSessionStorage from "../hooks/useStateWithSessionStorage";
+import { CartType } from "../schema/product";
 
 export default function Header() {
     const [quantity, setQuantity] = useState<number>(0);
 
     useEffect(() => {
         const onCartUpdated = () => {
-            const [cart, _] = useStateWithSessionStorage('cart');
-            const nextQuantity = cart.cartList.length;
+            const storedCart = sessionStorage.getItem("cart");
 
-            setQuantity(nextQuantity);
+            if (!storedCart) {
+                setQuantity(0);
+                return;
+            }
+
+            const cart: CartType = JSON.parse(storedCart);
+
+            const total = cart.cartList.reduce(
+                (total, item) => total + item.quantity,
+                0
+            );
+
+            setQuantity(total);
         };
 
         window.addEventListener("cartUpdated", onCartUpdated);
