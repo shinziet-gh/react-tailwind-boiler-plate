@@ -3,7 +3,6 @@ import { Link as RouterLink } from "react-router";
 import { FiShoppingBag } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import NavBar from "./Navbar";
-import useStateWithSessionStorage from "../hooks/useStateWithSessionStorage";
 import { CartType } from "../schema/product";
 
 export default function Header() {
@@ -43,7 +42,7 @@ export default function Header() {
                     <Box display="flex" justifyContent="flex-end">
                         <IconButton aria-label="Cart" padding="2">
                             <FiShoppingBag />
-                            <Text fontWeight="bold">{quantity ?? 0}</Text>
+                            <Text data-testid="cart-quantity" fontWeight="bold">{quantity ?? 0}</Text>
                         </IconButton>
                     </Box>
                 </RouterLink>
