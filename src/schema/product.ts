@@ -15,7 +15,6 @@ export type CartItemType = {
     prodWeight: number,
     quantity: number,
     prodImageUrl: string,
-
 }
 
 export type CartType = {
