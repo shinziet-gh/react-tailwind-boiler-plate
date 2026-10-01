@@ -52,7 +52,6 @@ export default function ProductDetail({ product }: { product: ProductType }) {
 
     return (
         <HStack width="100%" display="flex" alignItems="flex-start">
-
             <Box flex="1" backgroundColor="#f0f0f0" justifyContent="center" alignItems="center" display="flex">
                 <Image src={product.prodImageUrl} alt={product.prodName} width="60%" height="50%" p="12" />
             </Box>
@@ -60,19 +59,20 @@ export default function ProductDetail({ product }: { product: ProductType }) {
             <VStack flex="2" display="flex" key={product.prodName} justifyContent="center" alignItems="center">
 
                 <VStack flex="1" display="flex" alignItems="flex-start">
-                    <Text fontSize="2xl" fontWeight="bold">
+                    <Text data-testid="product-name" fontSize="2xl" fontWeight="bold">
                         {product.prodName}
                     </Text>
-                    <Text fontSize="xl" fontWeight="bold">
+                    <Text data-testid="product-price" fontSize="xl" fontWeight="bold">
                         ${product.prodPrice.toFixed(2)}
                     </Text>
-                    <Text>{product.prodDesc}</Text>
+                    <Text data-testid="product-description">{product.prodDesc}</Text>
 
                     <Text fontSize="sm" marginTop="8">Weight</Text>
                     <Box display="flex" flexDirection="column" gap="4">
                         <HStack>
                             {product.prodWeights.map((weight, index) => (
                                 <Button
+                                    data-testid={`weight-button-${weight}`}
                                     width="90px"
                                     height="70px"
                                     key={index}
@@ -90,7 +90,7 @@ export default function ProductDetail({ product }: { product: ProductType }) {
 
                         <HStack display="flex" justifyContent="space-between">
                             <Counter count={selectedQuantity} updateCount={setSelectedQuantity} />
-                            <Button onClick={() => updateCart()}>Add to Cart</Button>
+                            <Button data-testid="add-to-cart-button" onClick={() => updateCart()}>Add to Cart</Button>
                         </HStack>
                     </Box>
                 </VStack>
