@@ -4,7 +4,6 @@ import { render, screen, cleanup } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { describe, it, expect, afterEach, vi } from 'vitest';
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
-import { BrowserRouter } from 'react-router-dom';
 import Counter from './Counter';
 
 describe("Counter", () => {
@@ -17,22 +16,18 @@ describe("Counter", () => {
 
     it("renders a default count", () => {
         render(
-            <BrowserRouter>
-                <ChakraProvider value={defaultSystem}>
-                    <Counter updateCount={mockUpdateCount} />
-                </ ChakraProvider>
-            </BrowserRouter>
+            <ChakraProvider value={defaultSystem}>
+                <Counter updateCount={mockUpdateCount} />
+            </ ChakraProvider>
         );
         expect(screen.getByText("0")).toBeInTheDocument();
     });
 
     it("increments the count when the button is clicked", async () => {
         render(
-            <BrowserRouter>
-                <ChakraProvider value={defaultSystem}>
-                    <Counter updateCount={mockUpdateCount} />
-                </ ChakraProvider>
-            </BrowserRouter>
+            <ChakraProvider value={defaultSystem}>
+                <Counter updateCount={mockUpdateCount} />
+            </ ChakraProvider>
         );
 
         const incrementButton = screen.getByTestId("increment-button");
@@ -45,11 +40,9 @@ describe("Counter", () => {
 
     it("decrements the count when the button is clicked", async () => {
         render(
-            <BrowserRouter>
-                <ChakraProvider value={defaultSystem}>
-                    <Counter updateCount={mockUpdateCount} />
-                </ ChakraProvider>
-            </BrowserRouter>
+            <ChakraProvider value={defaultSystem}>
+                <Counter updateCount={mockUpdateCount} />
+            </ ChakraProvider>
         );
 
         const decrementButton = screen.getByTestId("decrement-button");
